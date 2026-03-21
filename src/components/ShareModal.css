@@ -1,0 +1,141 @@
+.share-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    animation: fadeIn 0.2s ease-out;
+}
+
+.share-modal {
+    background: var(--surface-color);
+    border-radius: var(--radius-md);
+    padding: 2rem;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.share-title {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+}
+
+.share-subtitle {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.4;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.share-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.share-toggle input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--accent-color);
+}
+
+.toggle-label {
+    user-select: none;
+}
+
+.share-create-btn {
+    width: 100%;
+    padding: 0.75rem;
+    background: var(--text-primary);
+    color: var(--surface-color);
+    border-radius: var(--radius-sm);
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: opacity 0.2s;
+}
+
+.share-create-btn:hover {
+    opacity: 0.85;
+}
+
+.share-create-btn:disabled {
+    opacity: 0.5;
+}
+
+.share-result {
+    margin-bottom: 1rem;
+}
+
+.share-url-box {
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    padding: 0.75rem;
+    margin-bottom: 0.75rem;
+    overflow: hidden;
+}
+
+.share-url {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    word-break: break-all;
+    font-family: monospace;
+}
+
+.share-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.share-copy-btn,
+.share-native-btn {
+    flex: 1;
+    padding: 0.6rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.share-copy-btn {
+    background: var(--text-primary);
+    color: var(--surface-color);
+}
+
+.share-native-btn {
+    background: var(--accent-color);
+    color: white;
+}
+
+.share-expiry-note {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    margin-top: 0.75rem;
+    font-style: italic;
+}
+
+.share-close-btn {
+    display: block;
+    margin: 1.25rem auto 0;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    padding: 0.5rem 1rem;
+}
+
+.share-close-btn:hover {
+    color: var(--text-primary);
+}

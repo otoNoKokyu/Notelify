@@ -1,0 +1,29 @@
+.toggle-switch {
+    width: 44px;
+    height: 24px;
+    border-radius: 100px;
+    background-color: #E0E0E0;
+    position: relative;
+    transition: background-color 0.2s;
+    cursor: pointer;
+}
+
+.toggle-switch.on {
+    background-color: var(--primary-color);
+}
+
+.toggle-handle {
+    width: 18px;
+    height: 18px;
+    background-color: white;
+    border-radius: 50%;
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    transition: transform 0.2s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.toggle-switch.on .toggle-handle {
+    transform: translateX(20px);
+}

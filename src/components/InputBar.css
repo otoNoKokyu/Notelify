@@ -1,0 +1,30 @@
+.input-bar-container {
+    padding: 1.5rem;
+    background-color: var(--bg-color);
+    border-top: 1px solid var(--border-color);
+}
+
+.input-bar-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.input-icon-btn {
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chat-input {
+    flex: 1;
+    font-size: 1rem;
+    color: var(--text-primary);
+}
+
+.chat-input::placeholder {
+    color: var(--text-secondary);
+}

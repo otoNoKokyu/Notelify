@@ -1,0 +1,84 @@
+.welcome-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+    background-color: var(--bg-color);
+    min-height: 100vh;
+}
+
+.cursor-line {
+    width: 1px;
+    height: 48px;
+    background-color: var(--border-color);
+    margin-bottom: 2rem;
+    animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}
+
+.welcome-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.welcome-title {
+    font-family: var(--font-serif);
+    font-size: 3.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+    margin: 0;
+}
+
+.welcome-subtitle {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin: 0;
+}
+
+.welcome-tagline {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    font-style: italic;
+    margin-top: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.enter-btn {
+    background-color: var(--accent-color);
+    color: white;
+    padding: 0.875rem 2.5rem;
+    border-radius: var(--radius-sm);
+    font-size: 1rem;
+    font-weight: 500;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.enter-btn:hover {
+    opacity: 0.9;
+}
+
+.enter-btn:active {
+    transform: scale(0.98);
+}

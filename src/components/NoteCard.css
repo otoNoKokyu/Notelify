@@ -1,0 +1,111 @@
+.note-card {
+    background-color: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 1.25rem;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    overflow: hidden;
+}
+
+.note-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+.synthesis-card {
+    border-left: 4px solid var(--primary-color);
+}
+
+.note-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+}
+
+.note-card-title {
+    font-family: var(--font-sans);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 0.25rem 0;
+    line-height: 1.2;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.note-metadata {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-sans);
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    letter-spacing: 0.02em;
+}
+
+.metadata-separator {
+    color: var(--border-color);
+}
+
+.more-btn {
+    color: var(--text-secondary);
+    padding: 4px;
+    border-radius: 50%;
+    transition: background 0.2s;
+}
+
+.more-btn:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.note-card-body {
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+.note-card-text {
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.note-tags {
+    margin-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.tag-badge {
+    padding: 0.25rem 0.6rem;
+    background-color: #EFEFEF;
+    color: #666;
+    font-size: 0.65rem;
+    font-weight: 600;
+    border-radius: 100px;
+    letter-spacing: 0.02em;
+}
+
+.card-list-preview {
+    margin: 0;
+    padding-left: 1rem;
+    list-style-type: disc;
+}
+
+.card-list-preview li {
+    color: #8CA0D7;
+    /* Soft blue tint for list bullets like Mockup 3 */
+    margin-bottom: 0.25rem;
+}
