@@ -79,7 +79,9 @@ export const speechService = {
 
         // 2. Start Socket connection AFTER hardware is ready
         socket = io(WS_URL, {
+            path: '/socket.io',
             transports: ['polling', 'websocket'],
+            namespace: '/speech',
             extraHeaders: {
                 'ngrok-skip-browser-warning': 'true',
                 'Bypass-Tunnel-Reminder': 'true'
