@@ -1,0 +1,217 @@
+.all-notes-page {
+    background-color: #f5f5f7;
+    min-height: 100vh;
+    padding: 24px 16px 100px 16px;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* Header & Search */
+.all-notes-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    margin-top: 12px;
+}
+
+.all-notes-time {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1a1a1a;
+}
+
+.all-notes-status-icons {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #1a1a1a;
+}
+
+.search-bar-container {
+    position: relative;
+    margin-bottom: 24px;
+    width: 100%;
+}
+
+.search-icon {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #b0b0b0;
+    width: 18px;
+    height: 18px;
+}
+
+.search-input {
+    width: 100%;
+    background-color: #ffffff;
+    border: none;
+    border-radius: 999px;
+    padding: 14px 16px 14px 44px;
+    font-size: 16px;
+    color: #333;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+    outline: none;
+    transition: box-shadow 0.2s ease;
+}
+
+.search-input::placeholder {
+    color: #c0c0c0;
+}
+
+.search-input:focus {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+/* Masonry Grid */
+.notes-masonry {
+    column-count: 2;
+    column-gap: 16px;
+    width: 100%;
+}
+
+@media (max-width: 380px) {
+    .notes-masonry {
+        column-count: 1;
+    }
+}
+
+.masonry-item {
+    break-inside: avoid;
+    margin-bottom: 16px;
+    cursor: pointer;
+}
+
+/* Note Card */
+.feed-note-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 16px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.03);
+    border: 1px solid rgba(0, 0, 0, 0.01);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.feed-note-card:active {
+    transform: scale(0.98);
+}
+
+.feed-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 12px;
+}
+
+.feed-card-title {
+    font-weight: 700;
+    font-size: 17px;
+    color: #1a1a1a;
+    line-height: 1.2;
+    margin: 0;
+    word-break: break-word;
+}
+
+.feed-card-date {
+    font-size: 10px;
+    font-weight: 600;
+    color: #c4c4c4;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    margin-top: 2px;
+    margin-left: 8px;
+}
+
+/* Content Styles */
+.feed-card-content {
+    font-size: 14px;
+    color: #888888;
+    line-height: 1.5;
+}
+
+/* Prose formatting */
+.prose-text {
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 6;
+    line-clamp: 6;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* List formatting */
+.list-content {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.list-item {
+    position: relative;
+    padding-left: 14px;
+    color: #8e8e93;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.list-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 6px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: #a0c3ff;
+    /* Subdued vibrant blue bullet */
+}
+
+/* Floating Action Bar Pill */
+.floating-action-bar {
+    position: fixed;
+    bottom: 85px;
+    /* Above BottomNav */
+    left: 50%;
+    transform: translateX(-50%);
+    background: #ffffff;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    padding: 6px 16px;
+    gap: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    z-index: 100;
+    border: 1px solid rgba(0, 0, 0, 0.02);
+}
+
+.fab-btn {
+    background: none;
+    border: none;
+    padding: 8px;
+    color: #b0b0b0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+
+.fab-btn:active {
+    background: #f0f0f0;
+}
+
+.fab-btn svg {
+    width: 18px;
+    height: 18px;
+}

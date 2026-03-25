@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import { formatFriendlyDate } from '../utils/dateUtils';
 import './NoteCard.css';
 
 export default function NoteCard({ note, onClick, onShare }) {
@@ -19,11 +20,6 @@ export default function NoteCard({ note, onClick, onShare }) {
         return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }).toUpperCase();
     };
 
-    const getTime = (dateStr) => {
-        if (!dateStr) return '';
-        const date = new Date(dateStr);
-        return date.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
-    };
 
     const getReadingTime = (text) => {
         const wordsPerMinute = 200;
@@ -76,7 +72,7 @@ export default function NoteCard({ note, onClick, onShare }) {
                 <div className="header-main">
                     <h3 className="note-card-title">{displayTitle}</h3>
                     <div className="note-metadata">
-                        <span className="metadata-item">{getTime(updatedAt)}</span>
+                        <span className="metadata-item">{formatFriendlyDate(updatedAt)}</span>
                         <span className="metadata-separator">•</span>
                         <span className="metadata-item">{getReadingTime(content || summary)}</span>
                     </div>

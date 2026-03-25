@@ -12,6 +12,7 @@ const ArchivePage = React.lazy(() => import('./pages/ArchivePage'));
 const EditorPage = React.lazy(() => import('./pages/EditorPage'));
 const SharedNotePage = React.lazy(() => import('./pages/SharedNotePage'));
 const TimelinePage = React.lazy(() => import('./pages/TimelinePage'));
+const AllNotesPage = React.lazy(() => import('./pages/AllNotesPage'));
 const ChatPage = React.lazy(() => import('./pages/ChatPage'));
 const PrivacyPage = React.lazy(() => import('./pages/PrivacyPage'));
 
@@ -36,8 +37,7 @@ function App() {
     }
   }, [location, navigate]);
 
-  // Hide BottomNav on Welcome and Editor pages
-  const showBottomNav = ['/home', '/archive', '/timeline', '/chat', '/privacy'].includes(location.pathname);
+  const showBottomNav = ['/home', '/archive', '/timeline', '/notes', '/chat', '/privacy'].includes(location.pathname);
 
   return (
     <div className="app-shell">
@@ -48,6 +48,7 @@ function App() {
           <Route path="/home" element={<HomePage />} />
           <Route path="/archive" element={<ArchivePage />} />
           <Route path="/timeline" element={<TimelinePage />} />
+          <Route path="/notes" element={<AllNotesPage />} />
           <Route path="/chat" element={<ChatPage />} />
           <Route path="/privacy" element={<PrivacyPage />} />
           <Route path="/note/:id" element={<EditorPage />} />

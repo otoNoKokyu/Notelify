@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getUserId } from '../services/authService';
+import { formatFriendlyDate } from '../utils/dateUtils';
 import './TimelinePage.css';
 
 export default function TimelinePage() {
@@ -131,7 +132,7 @@ export default function TimelinePage() {
                                 <div className="timeline-item" onClick={() => navigate(`/note/${note.id}`)}>
                                     <div className="timeline-marker">
                                         <div className="timeline-dot"></div>
-                                        <div className="timeline-line"></div>
+                                        <div className="horizontal-connector"></div>
                                     </div>
                                     <div className="timeline-content">
                                         <div className="timeline-item-header">
@@ -150,7 +151,7 @@ export default function TimelinePage() {
                                         <div className="timeline-inline-meta">
                                             <span className="inline-meta-item">
                                                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                                                {new Date(note.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                                                {formatFriendlyDate(note.createdAt)}
                                             </span>
                                             <span className="inline-meta-item">
                                                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"></path></svg>

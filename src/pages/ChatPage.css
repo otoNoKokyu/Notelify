@@ -180,6 +180,8 @@
     padding: 0.75rem 1rem;
     cursor: pointer;
     transition: all 0.2s ease;
+    flex-shrink: 0;
+    /* Ensure card doesn't squash */
 }
 
 .ref-card:hover {
@@ -334,4 +336,203 @@
     40% {
         transform: scale(1);
     }
+}
+
+/* Topic Cards */
+.topic-card {
+    background-color: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    margin-bottom: 2rem;
+    transition: box-shadow 0.3s ease;
+}
+
+.topic-card:hover {
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+}
+
+.topic-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 1.5rem;
+    background-color: var(--surface-color);
+    border-bottom: 1px solid var(--border-color);
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.2s ease;
+}
+
+.topic-card-header:hover {
+    background-color: var(--border-color);
+}
+
+.topic-card-body-wrapper {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    /* Added overflow hidden for the transition */
+}
+
+.topic-card:not(.collapsed) .topic-card-body-wrapper {
+    grid-template-rows: 1fr;
+    overflow: visible;
+    /* Allow internal scroll to be visible when expanded */
+}
+
+.topic-card.collapsed .topic-card-header {
+    border-bottom: none;
+}
+
+.topic-header-left {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.topic-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background-color: #2D9CDF;
+    color: white;
+    border-radius: 8px;
+}
+
+.topic-title-area {
+    display: flex;
+    flex-direction: column;
+}
+
+.topic-title {
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0 0 0.25rem 0;
+    color: var(--text-primary);
+}
+
+.topic-meta {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+.topic-header-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.chevron-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+}
+
+.topic-status-badge {
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 0.35rem 0.75rem;
+    border-radius: 20px;
+}
+
+.topic-status-badge.active {
+    background-color: rgba(45, 156, 223, 0.1);
+    color: #2D9CDF;
+}
+
+.topic-status-badge.closed {
+    background-color: var(--bg-color);
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+}
+
+.topic-reply-btn {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    border-radius: 20px;
+    padding: 0.35rem 0.75rem;
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.topic-reply-btn:hover {
+    background: var(--surface-color);
+    border-color: #c4bfb8;
+}
+
+.topic-card-body {
+    padding: 1.5rem 1.5rem 3rem 1.5rem;
+    /* Increased bottom padding */
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-height: 500px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-color) transparent;
+    min-height: 0;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.topic-card:not(.collapsed) .topic-card-body {
+    opacity: 1;
+    transition-delay: 0.1s;
+}
+
+.topic-card-body::-webkit-scrollbar {
+    width: 6px;
+}
+
+.topic-card-body::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.topic-card-body::-webkit-scrollbar-thumb {
+    background-color: var(--border-color);
+    border-radius: 10px;
+}
+
+.replying-indicator {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(45, 156, 223, 0.1);
+    color: #2D9CDF;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    margin-bottom: 0.75rem;
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.cancel-reply-btn {
+    background: transparent;
+    border: none;
+    color: #2D9CDF;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.2rem;
+    border-radius: 50%;
+}
+
+.cancel-reply-btn:hover {
+    background-color: rgba(45, 156, 223, 0.2);
 }

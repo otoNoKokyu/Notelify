@@ -8,6 +8,7 @@ export default function BottomNav({ isOnline }) {
 
     const isFeed = location.pathname === '/feed' || location.pathname === '/home';
     const isTimeline = location.pathname === '/timeline';
+    const isAllNotes = location.pathname === '/notes';
     const isChat = location.pathname === '/chat';
     const isPrivacy = location.pathname === '/privacy';
 
@@ -25,6 +26,20 @@ export default function BottomNav({ isOnline }) {
                             <polyline points="9 22 9 12 15 12 15 22"></polyline>
                         </svg>
                         <span className="nav-label">Feed</span>
+                    </div>
+                </button>
+                <button
+                    className={`nav-btn ${isAllNotes ? 'active' : ''}`}
+                    onClick={() => navigate('/notes')}
+                    aria-label="All Notes"
+                >
+                    <div className="nav-btn-content">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="3" y1="9" x2="21" y2="9"></line>
+                            <line x1="9" y1="21" x2="9" y2="9"></line>
+                        </svg>
+                        <span className="nav-label">All Notes</span>
                     </div>
                 </button>
                 <button
