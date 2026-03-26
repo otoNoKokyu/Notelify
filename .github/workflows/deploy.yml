@@ -18,7 +18,13 @@ jobs:
             cd /home/ubuntu/Notelify
             git pull origin dev
 
-            # 2. Build the app
+            # 2. Create .env file for production build
+            cat > .env << 'EOF'
+VITE_API_URL=https://catchathought.ddns.net/api
+VITE_WS_URL=https://catchathought.ddns.net
+EOF
+
+            # 3. Build the app
             npm install
             npm run build
 
