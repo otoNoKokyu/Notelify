@@ -5,6 +5,7 @@
     overflow-y: auto;
     flex: 1;
     padding-bottom: 1rem;
+    padding-right: 8px;
     scrollbar-width: thin;
 }
 

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getUserId } from '../services/authService';
 import { formatFriendlyDate } from '../utils/dateUtils';
+import { db } from '../services/db';
 import './TimelinePage.css';
 
 export default function TimelinePage() {
@@ -88,6 +89,8 @@ export default function TimelinePage() {
                 }
             });
             if (response.ok) {
+                const updatedNote = await response.json();
+                await db.notes.put(updatedNote);
                 setVersionsModaledId(null);
                 fetchTimeline(); // refresh timeline list
             } else {
@@ -104,7 +107,9 @@ export default function TimelinePage() {
     return (
         <div className="timeline-page fade-in page-container">
             <div className="timeline-header">
-                <h1 className="timeline-greeting">Good morning, Julian.</h1>
+                <h1 className="timeline-greeting">
+                    {new Date().getHours() < 12 ? 'Good morning.' : new Date().getHours() < 18 ? 'Good afternoon.' : 'Good evening.'}
+                </h1>
                 <p className="timeline-summary">You have <strong>{timelineNotes.length}</strong> notes in your recent timeline.</p>
             </div>
 

@@ -89,6 +89,21 @@ export default function EditorPage() {
         if (note) noteDataRef.current = note;
     }, [note]);
 
+    // Initialize contentEditable DOM elements safely to prevent cursor resets on re-render
+    useEffect(() => {
+        if (note && titleRef.current && !titleRef.current.innerText && note.title) {
+            titleRef.current.innerText = note.title;
+        }
+    }, [note?.id]);
+
+    useEffect(() => {
+        if (note && contentRef.current) {
+            const rawContent = note.rawContent || note.content;
+            const currentContent = noteDataRef.current?.content || note.content || '';
+            contentRef.current.innerHTML = showRaw ? rawContent : currentContent;
+        }
+    }, [note?.id, showRaw]);
+
     const handleTitleInput = () => {
         if (!titleRef.current || !noteDataRef.current) return;
         const newTitle = titleRef.current.innerText;
@@ -223,9 +238,7 @@ export default function EditorPage() {
                     ref={titleRef}
                     onInput={handleTitleInput}
                     data-placeholder="Untitled"
-                >
-                    {note.title || ''}
-                </h1>
+                />
 
                 <hr className="editor-divider" />
 
@@ -235,7 +248,6 @@ export default function EditorPage() {
                     suppressContentEditableWarning
                     ref={contentRef}
                     onInput={handleContentInput}
-                    dangerouslySetInnerHTML={{ __html: showRaw ? (note.rawContent || note.content) : (note.content || '') }}
                 />
 
                 <div className="insights-container">

@@ -3,6 +3,7 @@ import { useLiveQuery } from 'dexie-react-hooks';
 import { useNavigate } from 'react-router-dom';
 import { db } from '../services/db';
 import { syncService } from '../services/syncService';
+import { formatFriendlyDate } from '../utils/dateUtils';
 import './SuggestedToday.css';
 export default function SuggestedToday() {
     const navigate = useNavigate();
@@ -67,7 +68,7 @@ export default function SuggestedToday() {
                 const title = note.title || 'Untitled Thought';
                 // Extract plain text snippet if no summary
                 const subtitle = note.summary || (note.content ? note.content.substring(0, 60) + '...' : '');
-                const timeFormatted = new Date(note.updatedAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                const timeFormatted = formatFriendlyDate(note.updatedAt);
 
                 return (
                     <div key={note.id} className="suggested-card" onClick={() => handleClick(note.id)}>

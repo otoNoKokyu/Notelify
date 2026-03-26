@@ -1,0 +1,35 @@
+name: Deploy Frontend
+on:
+  push:
+    branches: [ dev ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: SSH and Update Frontend
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ubuntu
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            # 1. Navigate to the repo and pull
+            cd /home/ubuntu/Notelify
+            git pull origin dev
+
+            # 2. Build the app
+            npm install
+            npm run build
+
+            # 3. Clean the Nginx folder and copy new files
+            # (We use sudo here because /var/www/ is usually restricted)
+            sudo rm -rf /var/www/catchathought/frontend/*
+            sudo cp -r dist/* /var/www/catchathought/frontend/
+
+            # 4. Fix permissions so Nginx can read the new files
+            sudo chown -R www-data:www-data /var/www/catchathought/frontend
+            sudo chmod -R 755 /var/www/catchathought/frontend
+
+            # 5. Reload Nginx
+            sudo systemctl reload nginx
