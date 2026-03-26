@@ -28,14 +28,14 @@ EOF
             npm install
             npm run build
 
-            # 3. Clean the Nginx folder and copy new files
+            # 4. Clean the Nginx folder and copy new files
             # (We use sudo here because /var/www/ is usually restricted)
             sudo rm -rf /var/www/catchathought/frontend/*
             sudo cp -r dist/* /var/www/catchathought/frontend/
 
-            # 4. Fix permissions so Nginx can read the new files
+            # 5. Fix permissions so Nginx can read the new files
             sudo chown -R www-data:www-data /var/www/catchathought/frontend
             sudo chmod -R 755 /var/www/catchathought/frontend
 
-            # 5. Reload Nginx
+            # 6. Reload Nginx
             sudo systemctl reload nginx
