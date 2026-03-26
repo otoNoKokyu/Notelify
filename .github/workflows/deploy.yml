@@ -18,10 +18,10 @@ jobs:
             cd /home/ubuntu/Notelify
             git pull origin dev
 
-            cat > .env << 'EOF'
-VITE_API_URL=https://catchathought.ddns.net/api
-VITE_WS_URL=https://catchathought.ddns.net
-EOF
+            cat > .env <<EOF
+            VITE_API_URL=https://catchathought.ddns.net/api
+            VITE_WS_URL=https://catchathought.ddns.net
+            EOF
 
             npm install
             npm run build
