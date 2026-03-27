@@ -76,8 +76,28 @@ export default function EditorPage() {
                 syncStatus: 'pending'
             });
             await syncService.queueAction(id, 'update');
+            saveTimeoutRef.current = null;
         }, 1000);
     }, [id]);
+
+    // Flush any pending saves immediately upon unmounting
+    useEffect(() => {
+        return () => {
+            if (saveTimeoutRef.current) {
+                clearTimeout(saveTimeoutRef.current);
+                if (noteDataRef.current) {
+                    db.notes.update(noteDataRef.current.id, {
+                        ...noteDataRef.current,
+                        updatedAt: new Date().toISOString(),
+                        isProcessed: false,
+                        syncStatus: 'pending'
+                    }).then(() => {
+                        syncService.queueAction(noteDataRef.current.id, 'update');
+                    });
+                }
+            }
+        };
+    }, []);
 
     // Use a ref to hold the latest note data for saving,
     // so we don't trigger React re-renders on every keystroke

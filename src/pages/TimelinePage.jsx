@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useLiveQuery } from 'dexie-react-hooks';
 import { getUserId } from '../services/authService';
 import { formatFriendlyDate } from '../utils/dateUtils';
 import { db } from '../services/db';
@@ -7,8 +8,10 @@ import './TimelinePage.css';
 
 export default function TimelinePage() {
     const navigate = useNavigate();
-    const [timelineNotes, setTimelineNotes] = useState([]);
+    const [serverNotes, setServerNotes] = useState([]);
     const [loading, setLoading] = useState(true);
+
+    const localNotes = useLiveQuery(() => db.notes.toArray());
 
     // Versions modal state
     const [versionsModaledId, setVersionsModaledId] = useState(null);
@@ -32,7 +35,7 @@ export default function TimelinePage() {
             });
             if (response.ok) {
                 const data = await response.json();
-                setTimelineNotes(data);
+                setServerNotes(data);
             }
         } catch (err) {
             console.error('Failed to fetch timeline', err);
@@ -44,6 +47,15 @@ export default function TimelinePage() {
     useEffect(() => {
         fetchTimeline();
     }, []);
+
+    const timelineNotes = (localNotes || []).map(localNote => {
+        const serverNote = serverNotes.find(s => s.id === localNote.id);
+        return {
+            ...localNote,
+            versionCount: serverNote?.versionCount || 0,
+            linkedNoteIds: serverNote?.linkedNoteIds || []
+        };
+    }).sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
 
     const openVersions = async (e, id) => {
         e.stopPropagation();

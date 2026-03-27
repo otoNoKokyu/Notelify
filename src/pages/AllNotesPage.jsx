@@ -1,38 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getUserId } from '../services/authService';
+import { useLiveQuery } from 'dexie-react-hooks';
+import { db } from '../services/db';
 import './AllNotesPage.css';
 
 export default function AllNotesPage() {
     const navigate = useNavigate();
-    const [notes, setNotes] = useState([]);
     const [searchQuery, setSearchQuery] = useState('');
-    const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-        const fetchNotes = async () => {
-            setLoading(true);
-            try {
-                const API_URL = import.meta.env.VITE_API_URL || '/api';
-                const response = await fetch(`${API_URL}/notes/timeline`, {
-                    headers: {
-                        'ngrok-skip-browser-warning': 'true',
-                        'x-user-id': getUserId()
-                    }
-                });
-                if (response.ok) {
-                    const data = await response.json();
-                    setNotes(data);
-                }
-            } catch (err) {
-                console.error('Failed to fetch notes', err);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchNotes();
-    }, []);
+    const notesData = useLiveQuery(() => db.notes.orderBy('updatedAt').reverse().toArray());
+    const notes = notesData || [];
+    const loading = notesData === undefined;
 
     // Filter by search query based on title, content, summary
     const filteredNotes = notes.filter(n => {
